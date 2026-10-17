@@ -5,6 +5,11 @@
 ▶ **[Play it in your browser](https://jasonmayg.github.io/earth-civilization/)** — no install, works on desktop and mobile. (Interface in Chinese.)
 
 <p align="center">
+  <a href="docs/demo.mp4"><img src="docs/demo.gif" alt="Gameplay walkthrough: 10,000 years of history on a real map, civilizations rising, trading and fighting" width="92%"></a><br>
+  <sub>Gameplay walkthrough: 10,000 years of history on a real map, civilizations rising, trading and fighting. ▶ <a href="docs/demo.mp4">Full video with captions (MP4, 1.5 min)</a></sub>
+</p>
+
+<p align="center">
   <img src="docs/screenshots/2-shang-writing.png" alt="1520 BC: the Shang carve writing on oracle bones" width="85%"><br>
   <sub>1520 BC — dozens of civilizations across a real-geography map; the chronicle on the right records every war, treaty and invention</sub>
 </p>
