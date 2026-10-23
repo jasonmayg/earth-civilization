@@ -1,0 +1,7 @@
+{
+  "name": "earth-civilization-i18n",
+  "private": true,
+  "description": "Builds the English edition (en/index.html) from index.html",
+  "scripts": { "build": "node i18n.js build", "check": "node i18n.js check" },
+  "devDependencies": { "acorn": "8.12.1" }
+}

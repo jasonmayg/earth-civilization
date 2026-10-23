@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>地球文明纪：自动推演</title>
+<link rel="alternate" hreflang="en" href="en/">
+<script id="langgate">(function(){var p=null;try{if(/[?&]lang=zh(&|$)/.test(location.search)){localStorage.setItem('ecg.lang','zh');return}p=localStorage.getItem('ecg.lang')}catch(e){}if(!p){var l=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'']).join(',').toLowerCase();if(l.indexOf('zh')<0)p='en'}if(p==='en')location.replace('en/'+location.search+location.hash)})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
@@ -49,6 +51,8 @@ canvas#map{display:block;width:100%;height:auto;cursor:crosshair;touch-action:no
 .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 button{font:inherit;color:inherit;cursor:pointer}
 .btn{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:7px 16px;font-size:14px}
+a.btn{color:inherit;text-decoration:none;display:inline-flex;align-items:center}
+.langlink{float:right;margin:-34px 34px 0 0;font-size:13px;color:var(--brass);text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:2px 9px}.langlink:hover{border-color:var(--brass)}
 .btn.primary{background:var(--brass);border-color:var(--brass);color:var(--bg);font-weight:700;min-width:88px}
 .btn:hover{border-color:var(--brass)}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:var(--panel)}
@@ -375,6 +379,7 @@ ul.log li.real .t{font-style:italic}
   .sub,.seed{display:none}
   .hdr .btn{display:none}
   .hdr #menubtn{display:inline-flex;padding:6px 12px}
+  .hdr #langbtn{display:inline-flex;padding:6px 10px}
   canvas#map{height:min(50dvh,118vw);touch-action:none}
   .mapwrap{border-radius:8px}
   .yearbox{left:10px;bottom:8px}
@@ -550,7 +555,7 @@ canvas#rcv{display:block;width:100%;height:min(58vh,560px);cursor:pointer;touch-
         <h1>地球文明纪</h1>
         <p class="sub" id="sub">从公元前八千年的河谷农耕开始，文明在地球上自行兴起、扩张、交战、分裂与传承。</p>
       </div>
-      <div class="hdr"><span class="seed" id="seed"></span><button class="btn" id="bookbtn">史书</button><button class="btn" id="replaybtn">回放</button><button class="btn" id="rewind">回溯</button><button class="btn" id="saves">存档</button><button class="btn" id="newworld">重新开局</button><button class="btn icon" id="helpbtn" aria-label="新手引导">?</button><button class="btn" id="menubtn" aria-haspopup="true">⋯ 菜单</button></div>
+      <div class="hdr"><span class="seed" id="seed"></span><button class="btn" id="bookbtn">史书</button><button class="btn" id="replaybtn">回放</button><button class="btn" id="rewind">回溯</button><button class="btn" id="saves">存档</button><button class="btn" id="newworld">重新开局</button><a class="btn" id="langbtn" href="en/" lang="en" hreflang="en" title="English" onclick="try{localStorage.setItem('ecg.lang','en')}catch(e){}">EN</a><button class="btn icon" id="helpbtn" aria-label="新手引导">?</button><button class="btn" id="menubtn" aria-haspopup="true">⋯ 菜单</button></div>
     </header>
     <div class="mapwrap" id="mapwrap">
       <canvas id="map" width="1800" height="720" aria-label="世界地图，显示各文明的疆域。滚轮或双指缩放，拖动平移"></canvas>
@@ -4446,7 +4451,7 @@ function showSetup() {
   const histOpts = HIST.filter(h => h.y > -8000).map(h => `<option value="${esc(h.n)}">${esc(h.n)}（${fmtYear(h.y)}登场）</option>`).join('');
   const nAch = Object.keys(achAll()).length, totAch = Object.keys(ACH).length + Object.keys(ACH_M).length;
   st.vs = { hist: 'rand', end: 'y1', humans: [{ name: '玩家一', pick: '' }], ais: [{ persona: 'conq', pick: '' }, { persona: 'sage', pick: '' }] };
-  const html = `<div class="tabs" role="tablist"><button role="tab" data-tab="free" aria-selected="true">自由开局</button><button role="tab" data-tab="scen" aria-selected="false">剧本挑战</button><button role="tab" data-tab="vs" aria-selected="false">对战</button><button role="tab" data-tab="net" aria-selected="false">在线</button></div>
+  const html = `<a class="langlink" href="en/" lang="en" hreflang="en" onclick="try{localStorage.setItem('ecg.lang','en')}catch(e){}">English</a><div class="tabs" role="tablist"><button role="tab" data-tab="free" aria-selected="true">自由开局</button><button role="tab" data-tab="scen" aria-selected="false">剧本挑战</button><button role="tab" data-tab="vs" aria-selected="false">对战</button><button role="tab" data-tab="net" aria-selected="false">在线</button></div>
   <div id="tab-net" hidden></div>
   <div id="tab-free">
   <fieldset><legend>世界起源</legend><div class="opts three" data-k="hist">
@@ -4664,7 +4669,7 @@ function showEnd() {
     : head + `<p>一万年间，共有 ${all} 个文明登上历史舞台，其中 ${dead} 个已湮没于尘土；诞生过 ${S.rels.length} 种宗教，建成 ${wn} 座奇观，爆发过 ${S.nukes} 次核战争。</p><p>疆域最辽阔的是${esc(big.base)}，极盛时约 ${Math.round(big.peak * 3.9)} 万平方公里。</p>${extra}`;
   openModal(et === 'climate' ? '气候崩溃' : et === 'nuclear' ? '核冬天' : '星际纪元', body + '<canvas id="endriver" style="width:100%;height:90px;border-radius:4px;margin-top:8px"></canvas>',
     [{ label: '继续观察', primary: true, fn() { S.keepGoing = true; }, resume: true }, { label: '撰写史书', fn() { S.keepGoing = true; setTimeout(writeBook, 0); }, resume: false }, { label: '回放', fn() { S.keepGoing = true; setTimeout(openReplay, 0); }, resume: false }, { label: '重新开局', fn() { setTimeout(showSetup, 0); }, resume: false }], { scroll: true, seal: et === 'stars' ? '终' : '劫' });
-  const ec = $('endriver'); if (ec) { const r = ec.getBoundingClientRect(); ec.width = r.width * 2; ec.height = r.height * 2; ec.getContext('2d').drawImage(hv, 0, 0, hv.width, hv.height, 0, 0, ec.width, ec.height); }
+  const ec = $('endriver'); if (ec && hv.width && hv.height) { const r = ec.getBoundingClientRect(); ec.width = r.width * 2; ec.height = r.height * 2; ec.getContext('2d').drawImage(hv, 0, 0, hv.width, hv.height, 0, 0, ec.width, ec.height); }
 }
 // ---------- 存档与回溯 ----------
 const SLOTS = ['1', '2', '3', 'auto'];

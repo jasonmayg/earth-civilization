@@ -1,0 +1,15 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  english-edition:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+        working-directory: tools/i18n
+      - name: English edition is complete and up to date
+        run: node i18n.js check
+        working-directory: tools/i18n
