@@ -150,6 +150,7 @@ const isFull = n => isFull0(n) || isFull0(n.replace(/^(Northern|Southern|Eastern
   ['<html lang="zh-CN">', '<html lang="en">'],
   [/<script id="langgate">[\s\S]*?<\/script>\n/, ''],
   ['<link rel="alternate" hreflang="en" href="en/">', '<link rel="alternate" hreflang="zh" href="../?lang=zh">'],
+  ['<meta property="og:url" content="https://jasonmayg.github.io/earth-civilization/">', '<meta property="og:url" content="https://jasonmayg.github.io/earth-civilization/en/">'],
   ["'ecg.save.'", "'ecg.en.save.'"],
 ];
 
